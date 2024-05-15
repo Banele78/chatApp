@@ -29,12 +29,11 @@ const App = () => {
 
   if (isLoading) return <div className="loading">Loading...</div>
 
-const width= 900;
+
 
   return (
     <div className='container'>
-      {width>=500 && (
-        <>
+      
       {
         currentUser ? (
         <>
@@ -45,7 +44,7 @@ const width= 900;
         ) : (
         <Login/>
       )
-      }</>)
+      
     }
     <Notification/>
     </div>
