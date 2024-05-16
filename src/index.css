@@ -20,7 +20,6 @@ body{
   height: 100vh;
   background-color: rgba(17,25,40,0.75);
   backdrop-filter: blur(19px) saturate(180%);
- 
   border :1px solid rgba(255,255,255,0.125);
   display: flex;
 }
@@ -30,4 +29,13 @@ body{
   font-size: 36px;
   border-radius: 10px;
   background-color: rgba(17,25,40,0.9);
+}
+
+@media(max-width:576px){
+  .container{
+    width: 100vw;
+    height: 100vh;
+    display:block;
+  }
+
 }

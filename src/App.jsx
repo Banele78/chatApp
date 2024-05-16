@@ -8,7 +8,8 @@ import { useUserStore } from "./lib/UserStore"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./lib/firebase"
 import { useChatStore } from "./lib/chatStore"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom"
+import Reload from "./components/Reload"
 
 
 const App = () => {
@@ -16,6 +17,8 @@ const App = () => {
   const {currentUser, isLoading, fecthUserInfo} = useUserStore();
   const {chatId} = useChatStore();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,7 +55,9 @@ const App = () => {
 
   return (
    <Router>
+    
     <div className='container'>
+      <Reload/>
       {screenWidth >800 ? <>
       {
         currentUser ? (
@@ -68,17 +73,24 @@ const App = () => {
     }
     </> : <>
     <Routes>
+    {
+        currentUser ? (
+        <>
+
     <Route path="/" element={<List />} />
     {chatId && (
     <>
      <Route path="/chat" element={<Chat />} />
+     <Route path="/detail" element={<Detail />} />
       </> 
     )}
-    {chatId && (
-              <>
-                <Route path="/detail" element={<Detail />} />
-              </>
-            )}
+    </> 
+        ) : (
+          <Route path="/" element={<Login />} />
+      )
+      
+    }
+    
     </Routes>
     
     

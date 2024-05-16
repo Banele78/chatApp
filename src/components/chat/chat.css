@@ -183,3 +183,79 @@
         }
     }
 }
+
+@media(max-width:576px){
+    .chat{
+       
+   
+    .bottom{
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #dddddd35;
+        gap:6px;/*changed*/
+        margin-top: auto;
+        background-color: rgb(17, 25, 40, 0.5);
+
+        .icons{
+            display: flex;
+            gap:5px;
+            margin-left: -15px;/*changed*/
+
+           
+        }
+        img{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            
+        }
+        input{
+            flex:1;
+            background-color: rgb(17, 25, 40, 0.5);
+            border:none;
+            outline: none;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-left: 0px;/*changed*/
+            width: 10px;/*changed*/
+            
+
+            &:disabled{
+               
+                cursor: not-allowed;
+            }
+        }
+
+        .emoji{
+            position: relative;
+
+
+            .picker{
+                position: absolute;
+                bottom:50px;
+                left:0;
+            }
+        }
+
+        .sendButton{
+            background-color: #5183fe;
+            color: white;
+            padding:10px 20px;
+            border:none;
+            border-radius: 50px;/*changed*/
+            cursor: pointer;
+           
+
+            &:disabled{
+                background-color: #5182feb4;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+}

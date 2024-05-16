@@ -81,7 +81,7 @@ function ChatList() {
          onClick={()=>setAddMode(prev=>!prev)}/>
         </div>
         {filteredChats.map((chat) =>(
-        <Link to="/chat"> <div className="item" 
+        <Link to="/chat" key={chat.chatId}> <div className="item" 
           key={chat.chatId}
            onClick={()=>handleSelect(chat)}
            style={{backgroundColor: chat?.isSeen? "transparent" : "#5183fe"}}>
