@@ -5,6 +5,7 @@ import {useUserStore} from "../../../lib/UserStore"
 import { doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 import { useChatStore } from '../../../lib/chatStore';
+import { Link } from 'react-router-dom';
 
 function ChatList() {
   const [addMode, setAddMode] =useState(false);
@@ -80,7 +81,7 @@ function ChatList() {
          onClick={()=>setAddMode(prev=>!prev)}/>
         </div>
         {filteredChats.map((chat) =>(
-          <div className="item" 
+        <Link to="/chat"> <div className="item" 
           key={chat.chatId}
            onClick={()=>handleSelect(chat)}
            style={{backgroundColor: chat?.isSeen? "transparent" : "#5183fe"}}>
@@ -90,7 +91,7 @@ function ChatList() {
             <span>{chat.user.blocked.includes(currentUser.id) ? "User" : chat.user.username}</span>
             <p>{chat.lastMessage}</p>
           </div>
-        </div>
+        </div></Link> 
 
         ))}
         

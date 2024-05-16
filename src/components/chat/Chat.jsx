@@ -6,6 +6,7 @@ import {db} from "../../lib/firebase"
 import { useChatStore } from '../../lib/chatStore';
 import { useUserStore } from '../../lib/UserStore';
 import upload from '../../lib/upload';
+import { Link } from 'react-router-dom';
 
 function Chat() {
   const [chat, setChat]= useState(null);
@@ -121,7 +122,7 @@ function Chat() {
       <div className="icons">
       <img src="./phone.png" alt=""/>
       <img src="./video.png" alt=""/>
-      <img src="./info.png" alt=""/>
+     <Link to="/detail"><img src="./info.png" alt=""/></Link> 
       </div>
      
     </div>
