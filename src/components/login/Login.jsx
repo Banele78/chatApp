@@ -14,6 +14,7 @@ function Login() {
     });
 
     const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(false);
 
     const handleAvatar = e =>{
         if(e.target.files[0]){
@@ -67,12 +68,14 @@ function Login() {
 
             toast.success("Account created! You can login now!");
         
-        
+            setPage(false);
     }catch(err){
         console.log(err);
         toast.error(err.message);
     } finally{
         setLoading(false);
+       
+        auth.signOut();
     }
 }
 
@@ -98,7 +101,11 @@ function Login() {
 
   return (
     <div className='login'>
-    <div className="item">
+          <div className={page ? "item Mobile" : "item loginMessage"}>
+      <div>Welcome back</div>
+      <div onClick={()=>setPage(false)}>login</div>
+    </div>
+    <div className={!page ? "item" : "item login"}>
         <h2>Welcome back</h2>
         <form onSubmit={handleLogin}>
             <input type="text" placeholder='Email' name="email"/>
@@ -106,9 +113,18 @@ function Login() {
             <button disabled={loading}>{loading ? "Loading" : "Sign In"}</button>
 
         </form>
+        <div className='hideText' onClick={()=>setPage(true)}>Sign up</div>
     </div>
-    <div className="separator"></div>
-    <div className="item">
+  
+   
+    <div className='separator'></div>
+    <div className={!page ? "item Mobile" : "item registerMessage"}>
+    <h1>Not Registered!</h1>
+
+    <div>Enter your details an start your jounery with us</div>
+    <div onClick={()=>setPage(true)}>Sign up</div>
+    </div>
+    <div className={page ? "item" :"item register"}>
     <h2>Create an Account</h2>
         <form onSubmit={handleRegister}>
             <label htmlFor='file'>
@@ -123,6 +139,7 @@ function Login() {
             <button disabled={loading}>{loading ? "Loading" : "Sign Up"}</button>
 
         </form>
+        <div className='hideText' onClick={()=>setPage(false)} >login</div> 
     </div>
     </div>
   )

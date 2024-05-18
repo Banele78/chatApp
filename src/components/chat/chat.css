@@ -70,6 +70,14 @@
             background: rgba(17,25,40,0.360); /* Color of the scrollbar handle */
             border-radius: 5px; /* Rounded corners */
           }
+          .showDate{
+            background-color: rgba(31, 48, 80, 0.3);
+            padding: 10px;
+            text-align: center;
+            
+            align-self: center;
+           
+          }
 
         .message{
             max-width: 70%;
@@ -237,7 +245,7 @@
             .picker{
                 position: absolute;
                 bottom:50px;
-                left:0;
+                left: -250px;/*changed*/
             }
         }
 

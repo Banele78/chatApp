@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import Reload from "./components/Reload"
 
 
+
 const App = () => {
 
   const {currentUser, isLoading, fecthUserInfo} = useUserStore();
@@ -47,10 +48,6 @@ const App = () => {
   console.log(currentUser)
 
   if (isLoading) return <div className="loading">Loading...</div>
-
- 
-
-  
 
 
   return (

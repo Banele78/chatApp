@@ -7,6 +7,7 @@ import { useChatStore } from '../../lib/chatStore';
 import { useUserStore } from '../../lib/UserStore';
 import upload from '../../lib/upload';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 
 function Chat() {
   const [chat, setChat]= useState(null);
@@ -54,6 +55,27 @@ function Chat() {
 };
 
 
+const formatDate = (date) => {
+  const options = { day: 'numeric', month: 'short', year: 'numeric' };
+  return new Intl.DateTimeFormat('en-GB', options).format(new Date(date));
+};
+const formattedDate = formatDate(new Date());
+
+const getCurrentTime = () => {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+ 
+
+  return `${hours}:${minutes}`;
+};
+
+console.log(getCurrentTime()); // e.g., "15:45:30"
+
+
+console.log(formattedDate); // e.g., May 18th, 2024 15:45:00
+
+
   const handleSend = async () =>{
     if(text==="") return;
 
@@ -69,7 +91,8 @@ function Chat() {
         messages:arrayUnion({
           senderId: currentUser.id,
           text,
-          createdAt: new Date(),
+          createdAt: formattedDate,
+          time: getCurrentTime(),
           ...(imgUrl && {img: imgUrl}),
           ...(imgUrl && {imgname: img.file.name}),
         }),
@@ -109,6 +132,8 @@ function Chat() {
     setText("");
   }
 
+  let lastDisplayedDate = null;
+
   return (
     <div className='chat'>
     <div className="top">
@@ -127,16 +152,25 @@ function Chat() {
      
     </div>
     <div className="center">
-    { chat?.messages?.map((message) =>(
-      <div className={message.senderId=== currentUser?.id?" message own": "message"} key={message?.createdAt}>
-        
-        <div className="texts">
-         {message.img && <img src={message.img} alt=""/>}
-          <p>{message.text}</p>
-          {/*<span>1 min go</span>*/}
-        </div>
-      </div>
-))}
+      
+    {chat?.messages?.map((message, index) => {
+        const messageDate = message.createdAt;
+        const showDate = messageDate !== lastDisplayedDate;
+        lastDisplayedDate = messageDate;
+
+        return (
+          <React.Fragment key={index}>
+            {showDate && <div className='showDate'>{messageDate}</div>}
+            <div className={message.senderId === currentUser?.id ? "message own" : "message"}>
+              <div className="texts">
+                {message.img && <img src={message.img} alt="message" />}
+                <p>{message.text}</p>
+                <span>{message.time}</span>
+              </div>
+            </div>
+          </React.Fragment>
+        );
+      })}
 
 {img.url && 
 <div className="message own">

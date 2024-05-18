@@ -108,7 +108,9 @@
             &.logout{
                 padding: 10px;
                 background-color: #1a73e8;
+                width: 100%;
             }
         }
+        
     }
 }

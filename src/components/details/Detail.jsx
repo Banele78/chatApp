@@ -4,6 +4,7 @@ import { auth, db } from '../../lib/firebase'
 import { useUserStore } from '../../lib/UserStore';
 import { useChatStore } from '../../lib/chatStore';
 import { arrayRemove, arrayUnion, doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
 
 function Detail() {
   const [chat,setChat] = useState(null);
@@ -72,6 +73,11 @@ function Detail() {
         console.error('Error downloading the image:', error);
       });
   };
+
+  const logOut = ()=>{
+    ()=>auth.signOut()
+  }
+
   
  
   
@@ -138,10 +144,10 @@ function Detail() {
           </div>
         </div>
 
-        <button onClick={handleBlock}>
+       <button onClick={handleBlock}>
           {isCurrentUserBlocked ? "You are Blocked" : isReceiverBlocked ? "User blocked" : "Block User"}
           </button>
-        <button className='logout' onClick={()=>auth.signOut()}>Logout</button>
+          <Link to="/">  <button className='logout' onClick={()=>auth.signOut()}>  Logout</button></Link> 
       </div>
 
     
