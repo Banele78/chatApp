@@ -7,10 +7,12 @@ import { db } from '../../../lib/firebase';
 import { useChatStore } from '../../../lib/chatStore';
 import { Link } from 'react-router-dom';
 
+
 function ChatList() {
   const [addMode, setAddMode] =useState(false);
   const [chats, setChats] = useState([]);
   const [input, setInput] = useState("");
+ 
   
 
   const {currentUser} = useUserStore();
@@ -98,6 +100,7 @@ function ChatList() {
 
       
        {addMode && <AddUser/>}
+      
     </div>
   )
 }

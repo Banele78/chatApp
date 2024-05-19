@@ -1,7 +1,7 @@
 //https://docs.pmnd.rs/zustand/getting-started/introduction
 import { doc, getDoc } from 'firebase/firestore';
 import { create } from 'zustand'
-import { db } from './firebase';
+import { db, auth } from './firebase';
 import { useUserStore } from './UserStore';
 
 export const useChatStore = create((set) => ({
@@ -42,5 +42,13 @@ export const useChatStore = create((set) => ({
   },
   changeBlock: ()=>{
      set(state=>({...state,isReceiverBlocked: !state.isReceiverBlocked}))
+  },
+
+  logout: ()=>{
+    set ({
+        chatId:null,
+        user:null,
+    });
+    auth.signOut();
   }
 }))

@@ -6,8 +6,6 @@
     gap:100px;
     margin-left: 100px;
 
-    
-
     .item{
         flex:1;
         display: flex;
@@ -32,7 +30,20 @@
         }
 
         .hideText{
-            visibility: hidden;
+            display: none;
+        }
+
+        .setPage{
+           cursor: pointer;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 25px;
+            border-radius: 30px;
+            padding: 10px 20px;
+
+            &:hover{
+                color: #1f8ef1;
+            }
         }
     
 
@@ -97,6 +108,7 @@
 
 @media(max-width:800px){
     .login{
+        margin-left: 40px;
         
         .item{
 
@@ -105,8 +117,21 @@
             }
             
         .hideText{
-            visibility: visible;
+            display: initial;
+
+            p{
+                font-size: 20px;
+            }
+
+            .setPage{
+            font-size: 20px;
+            padding: 7px 15px;
+            margin-top: 10px;
         }
+           
+        }
+
+        
         }
         .separator{
             display: none;

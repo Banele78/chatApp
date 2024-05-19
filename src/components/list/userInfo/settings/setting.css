@@ -1,0 +1,32 @@
+.settings{
+    width: max-content;
+    height: max-content;
+    padding: 30px;
+    background-color: rgba(17,25,40,0.781);
+    border-radius: 10px;
+    position:absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+
+    button{
+        padding: 10px;
+        background-color: #1a73e8;
+        width: 100%;
+        color: white;
+        border: none;
+        border-radius: pointer;
+        cursor: pointer;
+
+        &:hover{
+            background-color: rgba(220,20,60,0.796);
+        }
+
+      
+    }
+}
+
+

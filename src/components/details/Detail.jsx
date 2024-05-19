@@ -74,12 +74,7 @@ function Detail() {
       });
   };
 
-  const logOut = ()=>{
-    ()=>auth.signOut()
-  }
 
-  
- 
   
   return (
     <div className='detail'>
@@ -147,7 +142,7 @@ function Detail() {
        <button onClick={handleBlock}>
           {isCurrentUserBlocked ? "You are Blocked" : isReceiverBlocked ? "User blocked" : "Block User"}
           </button>
-          <Link to="/">  <button className='logout' onClick={()=>auth.signOut()}>  Logout</button></Link> 
+          
       </div>
 
     

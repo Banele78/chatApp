@@ -19,6 +19,7 @@ function Chat() {
   });
 
   const endRef =useRef(null);
+  const [isSendig, setIsSending] = useState(false);
 
 
   const {currentUser} = useUserStore();
@@ -70,18 +71,13 @@ const getCurrentTime = () => {
   return `${hours}:${minutes}`;
 };
 
-console.log(getCurrentTime()); // e.g., "15:45:30"
-
-
-console.log(formattedDate); // e.g., May 18th, 2024 15:45:00
-
-
   const handleSend = async () =>{
     if(text==="") return;
 
     let imgUrl =null;
 
     try{
+      setIsSending(true);
 
       if(img.file){
         imgUrl= await upload(img.file);
@@ -122,14 +118,18 @@ console.log(formattedDate); // e.g., May 18th, 2024 15:45:00
      
     }catch(err){
       console.log(err);
+    }finally{
+      setIsSending(false);
+      setImg({
+        file:null,
+        url:""
+      });
+  
+      setText("");
+
     }
 
-    setImg({
-      file:null,
-      url:""
-    });
-
-    setText("");
+    
   }
 
   let lastDisplayedDate = null;
@@ -202,8 +202,15 @@ console.log(formattedDate); // e.g., May 18th, 2024 15:45:00
         </div>
      
       </div>
-      <button className='sendButton' onClick={handleSend}
-      disabled={isCurrentUserBlocked || isReceiverBlocked}>Send</button>
+      {!isSendig ? (<>
+        <button className='sendButton' onClick={handleSend}
+      disabled={isCurrentUserBlocked || isReceiverBlocked || isSendig}>Send</button>
+      </>): (<>
+        <button className='sendButton' onClick={handleSend}
+      disabled={isCurrentUserBlocked || isReceiverBlocked || isSendig}>
+        <div className="spinner"></div></button>
+      </>)}
+      
     </div>
     </div>
   )

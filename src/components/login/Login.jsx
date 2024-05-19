@@ -102,8 +102,9 @@ function Login() {
   return (
     <div className='login'>
           <div className={page ? "item Mobile" : "item loginMessage"}>
-      <div>Welcome back</div>
-      <div onClick={()=>setPage(false)}>login</div>
+      <h1>Already Registered!</h1>
+      <div>Please log in to continue chatting.</div>
+      <div className="setPage" onClick={()=>setPage(false)}>login</div>
     </div>
     <div className={!page ? "item" : "item login"}>
         <h2>Welcome back</h2>
@@ -113,7 +114,11 @@ function Login() {
             <button disabled={loading}>{loading ? "Loading" : "Sign In"}</button>
 
         </form>
-        <div className='hideText' onClick={()=>setPage(true)}>Sign up</div>
+        <div className='hideText'>
+            <p>Not Registered!</p>
+            <div className="setPage"onClick={()=>setPage(true)}>Sign up</div>
+            </div>
+       
     </div>
   
    
@@ -121,8 +126,8 @@ function Login() {
     <div className={!page ? "item Mobile" : "item registerMessage"}>
     <h1>Not Registered!</h1>
 
-    <div>Enter your details an start your jounery with us</div>
-    <div onClick={()=>setPage(true)}>Sign up</div>
+    <div>Create an account to start using ConvoSync.</div>
+    <div  className="setPage" onClick={()=>setPage(true)}>Sign up</div>
     </div>
     <div className={page ? "item" :"item register"}>
     <h2>Create an Account</h2>
@@ -139,7 +144,10 @@ function Login() {
             <button disabled={loading}>{loading ? "Loading" : "Sign Up"}</button>
 
         </form>
-        <div className='hideText' onClick={()=>setPage(false)} >login</div> 
+        <div className='hideText'>
+            <p>Already Registered!</p>
+            <div className="setPage" onClick={()=>setPage(false)}>login</div>
+            </div> 
     </div>
     </div>
   )

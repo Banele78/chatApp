@@ -179,18 +179,38 @@
         .sendButton{
             background-color: #5183fe;
             color: white;
-            padding:10px 20px;
+            padding:10px 0px;
             border:none;
             border-radius: 5px;
             cursor: pointer;
+            width: 70px;
 
             &:disabled{
                 background-color: #5182feb4;
                 cursor: not-allowed;
             }
+            .spinner {
+                border: 4px solid rgba(0, 0, 0, 0.1);
+                border-left-color: #7983ff;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                animation: spin 1s linear infinite;
+                text-align: center;
+                margin-left: 25px;
+               
+              }
+              
         }
     }
 }
+
+
+@keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
 @media(max-width:576px){
     .chat{
@@ -241,7 +261,6 @@
         .emoji{
             position: relative;
 
-
             .picker{
                 position: absolute;
                 bottom:50px;
@@ -252,7 +271,7 @@
         .sendButton{
             background-color: #5183fe;
             color: white;
-            padding:10px 20px;
+            padding:10px 0px;/*changed*/
             border:none;
             border-radius: 50px;/*changed*/
             cursor: pointer;
